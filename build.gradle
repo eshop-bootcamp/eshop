@@ -1,0 +1,15 @@
+buildscript {
+	ext {
+
+	}
+	repositories {
+		mavenCentral()
+	}
+}
+
+//apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
