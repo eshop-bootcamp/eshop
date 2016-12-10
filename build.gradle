@@ -14,9 +14,3 @@ repositories {
 	mavenCentral()
 }
 
-
-task hello(type: Exec){
-
-}
-
-build.dependsOn hello
