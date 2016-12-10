@@ -1,3 +1,5 @@
+apply plugin: 'java'
+
 buildscript {
 	ext {
 
@@ -7,9 +9,14 @@ buildscript {
 	}
 }
 
-//apply plugin: 'java'
 
 repositories {
 	mavenCentral()
 }
 
+
+task hello(type: Exec){
+
+}
+
+build.dependsOn hello
