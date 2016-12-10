@@ -27,3 +27,4 @@ nbdist/
 
 ### UI ###
 UI/node_modules
+UI/yarn-error.log
