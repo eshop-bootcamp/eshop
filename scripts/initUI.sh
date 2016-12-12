@@ -8,4 +8,4 @@ killall node
 #killall screen
 # lsof -i :3001 | grep LISTEN | awk {'print $2'}|xargs kill -9
 # PORT=3001  nohup yarn start &
-yarn run test
+yarn run build

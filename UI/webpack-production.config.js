@@ -14,6 +14,11 @@ const config = {
     path: buildPath, // Path of output file
     filename: 'app.js', // Name of output file
   },
+  devServer: {
+    contentBase: 'build', // Relative directory for base of server
+    port: process.env.PORT || 3000, // Port Number
+    host: process.env.IP || 'localhost', // Change to '0.0.0.0' for external facing server
+  },
   plugins: [
     // Define production build to allow React to strip out unnecessary checks
     new webpack.DefinePlugin({
