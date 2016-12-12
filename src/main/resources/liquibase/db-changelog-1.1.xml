@@ -6,13 +6,22 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="create_category" author="sravanthiAndsrividhya">
         <createTable tableName="category" schemaName="eshop">
-            <column name="id" type="int">
+            <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet author="sravanthiAndsrividhya" id="seed_category">
+        <insert tableName="category">
+            <column name="name" value="Electronics"/>
+        </insert>
+        <insert tableName="category">
+            <column name="name" value="Clothing"/>
+        </insert>
     </changeSet>
 
     <changeSet id="tag-1.1" author="sravanthiAndsrividhya">
