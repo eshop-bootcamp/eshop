@@ -43,6 +43,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     runtime('mysql:mysql-connector-java')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.4'
 }
 
 jacoco {
