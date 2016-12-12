@@ -6,6 +6,6 @@ cd UI
 yarn install
 killall node
 #killall screen
-screen
-PORT=3001 yarn start
-screen -d
+# lsof -i :3001 | grep LISTEN | awk {'print $2'}|xargs kill -9
+# PORT=3001  nohup yarn start &
+yarn run build

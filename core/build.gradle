@@ -2,6 +2,8 @@ buildscript {
     ext {
         springBootVersion = '1.4.2.RELEASE'
         jacocoCoverage = '0.4.0'
+        liquibasePluginVersion = '1.2.1'
+        mysqlJavaConnectorVersion = '5.1.36'
     }
     repositories {
         mavenCentral()
@@ -14,6 +16,8 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("gradle.plugin.com.palantir:jacoco-coverage:${jacocoCoverage}")
+        classpath("org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}")
+        classpath("mysql:mysql-connector-java:${mysqlJavaConnectorVersion}")
     }
 }
 
@@ -21,6 +25,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.palantir.jacoco-coverage'
 apply plugin: 'com.palantir.jacoco-full-report'
+apply plugin: 'org.liquibase.gradle'
 
 jar {
     baseName = 'eshop'
@@ -59,5 +64,24 @@ jacocoCoverage {
 
 test.dependsOn jacocoFullReport
 
+liquibase {
+    activities {
+        liquibasemain {
+            File propsFile = new File("${project.rootDir}/core/src/main/resources/liquibase/liquibase.properties")
+            Properties properties = new Properties()
+            properties.load(new FileInputStream(propsFile))
+            changeLogFile "${project.rootDir}/core/src/main/resources/liquibase/db-changelog-master.xml"
+            url properties['url']
+            username properties['username']
+            password properties['password']
+        }
+    }
+    runList = 'liquibasemain'
+}
 
-
+task migrateDatabase() {
+    doLast {
+        println "Database migrated successfully"
+    }
+}
+migrateDatabase.dependsOn update

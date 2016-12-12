@@ -1,4 +1,5 @@
 .gradle
+.DS_Store
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
@@ -26,3 +27,4 @@ nbdist/
 
 ### UI ###
 UI/node_modules
+UI/yarn-error.log

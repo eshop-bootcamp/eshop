@@ -4,7 +4,8 @@
   "description": "Sample project that uses Material-UI",
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "npm run prebuild && ./node_modules/.bin/webpack --config webpack-production.config.js --progress --colors",
+    "start-prod": "webpack-dev-server --config webpack-production.config.js --progress --inline --colors",
+    "build": "npm run test && npm run prebuild && ./node_modules/.bin/webpack --config webpack-production.config.js --progress --colors",
     "prebuild": "rm -rf build && mkdir build",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --require test/helpers/setup.js -w test/helpers/browser.js 'test/**/*.spec.js'"
   },
