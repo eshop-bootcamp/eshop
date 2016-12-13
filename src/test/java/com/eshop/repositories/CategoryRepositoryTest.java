@@ -27,6 +27,5 @@ public class CategoryRepositoryTest {
 
         assertNotNull(categories);
         assertTrue(Iterables.size(categories)>0);
-//        assertTrue(Iterables.size(categories)==2);
     }
 }

@@ -18,8 +18,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by srividhya on 13/12/16.
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
 public class CategoryServiceTest {
 
     @Test
