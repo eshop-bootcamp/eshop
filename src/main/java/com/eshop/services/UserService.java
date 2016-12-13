@@ -1,6 +1,6 @@
 package com.eshop.services;
 
-import com.eshop.models.User;
+import com.eshop.model.User;
 import com.eshop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

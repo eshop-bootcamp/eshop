@@ -1,6 +1,6 @@
 package com.eshop.repositories;
 
-import com.eshop.models.User;
+import com.eshop.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

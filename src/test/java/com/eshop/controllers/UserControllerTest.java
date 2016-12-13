@@ -1,13 +1,12 @@
 package com.eshop.controllers;
 
-import com.eshop.models.Buyer;
-import com.eshop.models.User;
+import com.eshop.model.Buyer;
+import com.eshop.model.User;
 import com.eshop.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;

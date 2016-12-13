@@ -1,6 +1,6 @@
 package com.eshop.controllers;
 
-import com.eshop.models.User;
+import com.eshop.model.User;
 import com.eshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

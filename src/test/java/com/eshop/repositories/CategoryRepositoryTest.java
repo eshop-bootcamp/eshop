@@ -1,6 +1,6 @@
 package com.eshop.repositories;
 
-import com.eshop.models.Category;
+import com.eshop.model.Category;
 import com.google.common.collect.Iterables;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,5 +27,6 @@ public class CategoryRepositoryTest {
 
         assertNotNull(categories);
         assertTrue(Iterables.size(categories)>0);
+//        assertTrue(Iterables.size(categories)==2);
     }
 }

@@ -1,4 +1,4 @@
-package com.eshop.models;
+package com.eshop.model;
 
 /**
  * Created by sappana on 13/12/2016.

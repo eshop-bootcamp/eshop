@@ -1,7 +1,7 @@
 package com.eshop.services;
 
-import com.eshop.models.Buyer;
-import com.eshop.models.User;
+import com.eshop.model.Buyer;
+import com.eshop.model.User;
 import com.eshop.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

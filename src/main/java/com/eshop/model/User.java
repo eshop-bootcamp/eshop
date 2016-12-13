@@ -1,4 +1,4 @@
-package com.eshop.models;
+package com.eshop.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
