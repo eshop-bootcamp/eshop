@@ -28,3 +28,8 @@ nbdist/
 ### UI ###
 UI/node_modules
 UI/yarn-error.log
+src/main/resources/application-test.yml
+
+src/main/resources/application.yml
+
+src/main/resources/integrationTest.sql
