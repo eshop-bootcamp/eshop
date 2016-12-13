@@ -1,6 +1,6 @@
 package com.eshop.repositories;
 
-import com.eshop.models.Category;
+import com.eshop.model.Category;
 import com.google.common.collect.Iterables;
 import org.junit.Test;
 import org.junit.runner.RunWith;

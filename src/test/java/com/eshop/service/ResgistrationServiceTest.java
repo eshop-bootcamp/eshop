@@ -1,6 +1,6 @@
 package com.eshop.service;
 
-import com.eshop.models.User;
+import com.eshop.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;

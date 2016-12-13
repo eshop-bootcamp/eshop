@@ -1,4 +1,4 @@
-package com.eshop.models;
+package com.eshop.model;
 
 public class User {
 
