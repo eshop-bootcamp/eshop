@@ -1,6 +1,6 @@
 package com.eshop.service;
 
-import com.eshop.model.User;
+import com.eshop.models.User;
 import org.springframework.http.HttpStatus;
 
 public class AuthService {

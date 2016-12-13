@@ -1,6 +1,6 @@
 package com.eshop.repositories;
 
-import com.eshop.model.Category;
+import com.eshop.models.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
