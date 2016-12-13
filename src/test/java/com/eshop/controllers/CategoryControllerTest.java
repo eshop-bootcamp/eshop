@@ -1,6 +1,6 @@
 package com.eshop.controllers;
 
-import com.eshop.model.Category;
+import com.eshop.models.Category;
 import com.eshop.service.CategoryService;
 import org.junit.Before;
 import org.junit.Test;
