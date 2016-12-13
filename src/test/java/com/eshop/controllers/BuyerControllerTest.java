@@ -1,11 +1,13 @@
 package com.eshop.controllers;
 
 import com.eshop.model.Category;
-import com.eshop.service.CategoryService;
+import com.eshop.services.CategoryService;
+import com.eshop.services.implementation.BuyerServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.View;
@@ -25,23 +27,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * Created by srividhya on 13/12/16.
  */
-public class CategoryControllerTest {
+public class BuyerControllerTest {
 
-    @InjectMocks
-    CategoryController mockCategoryController;
+    BuyerController mockBuyerController;
 
     @Mock
     View mockView;
 
     MockMvc mockMvc;
 
-    @Mock
     CategoryService mockCategoryService;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        mockMvc = standaloneSetup(mockCategoryController)
+        mockCategoryService = Mockito.mock(BuyerServiceImpl.class);
+        mockBuyerController = new BuyerController(mockCategoryService);
+        mockMvc = standaloneSetup(mockBuyerController)
                 .setSingleView(mockView)
                 .build();
     }
