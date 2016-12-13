@@ -16,10 +16,10 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     </changeSet>
 
     <changeSet author="sravanthiAndsrividhya" id="seed_category">
-        <insert tableName="category">
+        <insert tableName="category" schemaName="eshop">
             <column name="name" value="Electronics"/>
         </insert>
-        <insert tableName="category">
+        <insert tableName="category" schemaName="eshop">
             <column name="name" value="Clothing"/>
         </insert>
     </changeSet>
