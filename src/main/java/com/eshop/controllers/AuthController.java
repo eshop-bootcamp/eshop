@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthController {
-    
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String login() {
         return "Authenticated!";
     }
+
 
 }
