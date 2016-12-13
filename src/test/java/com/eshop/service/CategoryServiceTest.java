@@ -2,6 +2,8 @@ package com.eshop.service;
 
 import com.eshop.model.Category;
 import com.eshop.repositories.CategoryRepository;
+import com.eshop.services.CategoryService;
+import com.eshop.services.implementation.BuyerServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +24,13 @@ public class CategoryServiceTest {
 
     @Test
     public void testDataIsFetchedSuccessfullyFromService() {
-        CategoryService categoryService = new CategoryService();
+        BuyerServiceImpl buyerService = new BuyerServiceImpl();
         CategoryRepository categoryRepository = Mockito.mock(CategoryRepository.class);
-        categoryService.setCategoryRepository(categoryRepository);
+        buyerService.setCategoryRepository(categoryRepository);
 
         when(categoryRepository.findAll()).thenReturn(new ArrayList<Category>());
 
-        Assert.assertTrue(categoryService.fetchAllCategories() != null);
+        Assert.assertTrue(buyerService.fetchAllCategories() != null);
     }
 
 }
