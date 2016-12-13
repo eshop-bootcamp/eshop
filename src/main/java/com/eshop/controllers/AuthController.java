@@ -1,16 +1,12 @@
 package com.eshop.controllers;
 
-import com.eshop.models.User;
-import com.eshop.service.AuthService;
-import org.springframework.stereotype.Controller;
+import com.eshop.model.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 import java.io.IOException;
 
 @RestController
