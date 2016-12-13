@@ -1,6 +1,6 @@
 package com.eshop.repositories;
 
-import com.eshop.models.Item;
+import com.eshop.model.Item;
 import org.springframework.data.repository.CrudRepository;
 
 /**

@@ -1,6 +1,6 @@
 package com.eshop.service;
 
-import com.eshop.models.Category;
+import com.eshop.model.Category;
 import com.eshop.repositories.CategoryRepository;
 import org.junit.Assert;
 import org.junit.Test;

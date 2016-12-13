@@ -1,7 +1,7 @@
 package com.eshop.controllers;
 
-import com.eshop.models.Category;
-import com.eshop.models.Item;
+import com.eshop.model.Item;
+import com.eshop.model.Category;
 import com.eshop.services.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

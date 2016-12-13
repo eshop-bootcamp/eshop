@@ -1,7 +1,5 @@
-package com.eshop.models;
+package com.eshop.model;
 
-
-import com.eshop.models.Category;
 
 import javax.persistence.*;
 

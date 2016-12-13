@@ -1,6 +1,6 @@
 package com.eshop.services;
 
-import com.eshop.models.Item;
+import com.eshop.model.Item;
 
 /**
  * Created by akshaybansod on 12/12/16.

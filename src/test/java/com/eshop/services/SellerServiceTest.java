@@ -1,7 +1,7 @@
 package com.eshop.services;
 
-import com.eshop.models.Item;
-import com.eshop.models.Category;
+import com.eshop.model.Item;
+import com.eshop.model.Category;
 import com.eshop.repositories.ItemRepository;
 import com.eshop.services.implementation.SellerServiceImpl;
 import org.junit.Assert;
