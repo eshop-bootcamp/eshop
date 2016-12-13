@@ -1,9 +1,17 @@
 package com.eshop.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
-     String username;
-     String password;
+    private @Id @GeneratedValue Long id;
+
+    private String username;
+    private String password;
+    private String emailId;
 
      public User(){
 
@@ -13,5 +21,14 @@ public class User {
 
         this.username = username;
         this.password = password;
+    }
+
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

@@ -1,9 +1,17 @@
 package com.eshop.repositories;
 
-import com.eshop.models.Category;
+import com.eshop.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
+
 }
+
+
+
+
+
+
+
