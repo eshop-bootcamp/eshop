@@ -23,12 +23,4 @@ public class User {
         this.password = password;
     }
 
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
 }

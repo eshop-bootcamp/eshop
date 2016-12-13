@@ -19,7 +19,7 @@ import java.util.List;
 public class BuyerController {
 
     @Autowired
-            @Resource(name = "buyerServiceImpl")
+    @Resource(name = "buyerServiceImpl")
     CategoryService buyerService;
 
 

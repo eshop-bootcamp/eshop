@@ -30,31 +30,9 @@ public class Item {
         this.imagePath = imagePath;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     public Category getCategory() {
         return category;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
 }
