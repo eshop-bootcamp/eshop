@@ -24,8 +24,8 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
-//apply plugin: 'com.palantir.jacoco-coverage'
-//apply plugin: 'com.palantir.jacoco-full-report'
+apply plugin: 'com.palantir.jacoco-coverage'
+apply plugin: 'com.palantir.jacoco-full-report'
 apply plugin: 'org.liquibase.gradle'
 
 jar {
