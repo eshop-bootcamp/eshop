@@ -14,12 +14,12 @@ public class AuthController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    void register(@RequestBody User user, HttpServletResponse response) throws IOException {
+    String register(@RequestBody User user) throws IOException {
 
-        response.setStatus(200);
-        response.getWriter().write("{\n" +
-                "\t\"Status\": \"Good\",\n"+
-                "}");
+//        return ("{\n" +
+//                "\t\"Status\": \"Good\",\n"+
+//                "}");
+        return ("Hello World");
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
