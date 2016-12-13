@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 public class BuyerController {
 
     @Autowired
-            @Qualifier("BuyerServiceImpl")
+            @Resource(name = "buyerServiceImpl")
     CategoryService buyerService;
 
 
