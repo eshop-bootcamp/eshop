@@ -93,7 +93,7 @@ liquibase {
             password properties['password']
         }
     }
-    if (project.property("dbContext") == 'integrationTest') {
+    if (project.hasProperty("dbContext") && project.property("dbContext") == 'integrationTest') {
         println "abc"
         runList = 'liquibaseintegration'
     } else {
@@ -107,19 +107,6 @@ task migrateDatabase() {
     }
 }
 migrateDatabase.dependsOn update
-
-task integrationTearDown() {
-    doLast {
-        println "Database migrated successfully"
-    }
-}
-integrationTearDown.dependsOn dropAll
-
-task integrationTest() {
-    project.setProperty("dbContext", "integrationTest")
-}
-
-migrateDatabase.mustRunAfter integrationTest
 
 
 
