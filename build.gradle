@@ -41,13 +41,14 @@ repositories {
 }
 
 dependencies {
-
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('com.google.guava:guava:20.0')
     runtime('mysql:mysql-connector-java')
     compile('org.springframework.boot:spring-boot-starter-test')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.5.4')
+    testCompile 'com.jayway.restassured:rest-assured:2.3.0'
     testCompile("com.h2database:h2:1.4.193")
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.4'
 }
@@ -69,6 +70,7 @@ jacocoCoverage {
     // Enforce minimum code coverage for every Java file.
     fileThreshold 0.3
     fileThreshold 0.0, "EShopApplication.java"
+    fileThreshold 0.0, "WebSecurityConfiguration.java"
 }
 
 test.dependsOn jacocoFullReport
