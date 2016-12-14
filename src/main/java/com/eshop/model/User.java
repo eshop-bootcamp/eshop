@@ -11,11 +11,8 @@ public class User {
 
     private String username;
     private String password;
-    private String emailId;
 
-     public User(){
-
-     }
+     public User(){}
 
     public User(String username, String password) {
 
@@ -23,12 +20,11 @@ public class User {
         this.password = password;
     }
 
-
-    public String getEmailId() {
-        return emailId;
-    }
-
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

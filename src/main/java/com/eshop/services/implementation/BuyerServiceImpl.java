@@ -2,7 +2,6 @@ package com.eshop.services.implementation;
 
 import com.eshop.model.Category;
 import com.eshop.repositories.CategoryRepository;
-import com.eshop.service.*;
 import com.eshop.services.CategoryService;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
