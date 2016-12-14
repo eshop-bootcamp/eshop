@@ -73,6 +73,7 @@ jacocoCoverage {
     fileThreshold 0.0, "WebSecurityConfiguration.java"
     fileThreshold 0.0, "AuthenticationConfiguration.java"
     fileThreshold 0.0, "AuthController.java"
+    fileThreshold 0.0, "WebConfig.java"
 }
 
 test.dependsOn jacocoFullReport
