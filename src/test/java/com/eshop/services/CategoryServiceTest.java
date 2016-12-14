@@ -1,28 +1,33 @@
 package com.eshop.services;
 
-import com.eshop.model.Category;
 import com.eshop.repositories.CategoryRepository;
-import com.eshop.services.CategoryService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.when;
 
 
+@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
 public class CategoryServiceTest {
 
-    @Autowired
-    CategoryService categoryService;
+    @InjectMocks
+    private CategoryService categoryService;
+
+    @Mock
+    private CategoryRepository categoryRepository;
 
     @Test
     public void testDataIsFetchedSuccessfullyFromService() {
-        CategoryRepository categoryRepository = Mockito.mock(CategoryRepository.class);
-        when(categoryRepository.findAll()).thenReturn(new ArrayList<Category>());
-        Assert.assertTrue(categoryService.getAllCategories() != null);
+        when(categoryRepository.findAll()).thenReturn(new ArrayList<>());
+        Assert.assertNotNull(categoryService.getAllCategories());
     }
 
 }
