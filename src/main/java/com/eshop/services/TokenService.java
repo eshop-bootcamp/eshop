@@ -1,5 +1,9 @@
 package com.eshop.services;
 
+
+import org.springframework.stereotype.Service;
+
+@Service
 public class TokenService {
 
     private final static String SECRET = "Do not even try to hack me";
