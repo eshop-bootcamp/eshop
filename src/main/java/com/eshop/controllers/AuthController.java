@@ -2,10 +2,8 @@ package com.eshop.controllers;
 
 import com.eshop.model.AuthorizedUser;
 import com.eshop.model.User;
-import com.eshop.services.UserService;
 import com.eshop.services.TokenService;
-
-
+import com.eshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
