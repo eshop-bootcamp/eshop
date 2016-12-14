@@ -71,6 +71,8 @@ jacocoCoverage {
     fileThreshold 0.3
     fileThreshold 0.0, "EShopApplication.java"
     fileThreshold 0.0, "WebSecurityConfiguration.java"
+    fileThreshold 0.0, "AuthenticationConfiguration.java"
+    fileThreshold 0.0, "AuthController.java"
 }
 
 test.dependsOn jacocoFullReport
