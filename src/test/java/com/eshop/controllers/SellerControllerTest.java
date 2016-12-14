@@ -24,9 +24,7 @@ import static org.mockito.Mockito.when;
  * Created by akshaybansod on 12/13/16.
  */
 
-@RunWith(SpringRunner.class)
-@AutoConfigureMockMvc
-@SpringBootTest
+
 public class SellerControllerTest {
 
 

@@ -45,22 +45,12 @@ public class SellerController {
         Path path = Paths.get("/Users/srividhya/Desktop/ItemImages");
         String imageUrl = fileHandlerService.handleFileUpload(file,path);
         Item item = null;
-        if(!"error".equalsIgnoreCase(imageUrl)){
+        if(!"error".equalsIgnoreCase(imageUrl) && ! "alreadyExists".equalsIgnoreCase(imageUrl)){
         item = sellerService.addItem(new Item(itemName, new Category(categoryId), description, quantity, price,
                 imageUrl));
         }
         return item;
     }
-
-
-    /*private String handleFileUpload(MultipartFile file,Path path) {
-        try {
-            Files.copy(file.getInputStream(), path.resolve(file.getOriginalFilename()));
-        } catch (IOException e) {
-            return "error";
-        }
-        return path.toString()+"/"+file.getOriginalFilename();
-    }*/
 
 
 }
