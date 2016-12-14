@@ -1,6 +1,6 @@
 package com.eshop.filter;
 
-import com.eshop.services.implementation.TokenServiceImpl;
+import com.eshop.services.TokenService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +24,9 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String tokenString = httpRequest.getHeader(TOKEN_HEADER);
-        TokenServiceImpl tokenServiceImpl = new TokenServiceImpl();
+        TokenService tokenService = new TokenService();
 
-        if (httpRequest.getRequestURI().endsWith("/login") || tokenServiceImpl.verifyToken(tokenString)) {
+        if (httpRequest.getRequestURI().endsWith("/login") || tokenService.verifyToken(tokenString)) {
             chain.doFilter(httpRequest, httpResponse);
         } else {
             httpResponse.sendError(401);
