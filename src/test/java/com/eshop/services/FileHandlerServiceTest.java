@@ -1,6 +1,7 @@
 package com.eshop.services;
 
 import com.eshop.services.implementation.FileHandlerServiceImpl;
+import org.junit.After;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 
@@ -55,6 +56,27 @@ public class FileHandlerServiceTest {
         String url = fileHandlerService.handleFileUpload(multipartFile,path);
         assertTrue(new File(url).exists());
     }
+
+    @After
+    public void deleteFilesCreatedByTest(){
+        File folder = new File("./src/test/resources");
+
+            deleteFilesCreatedByTest(folder);
+    }
+
+    private void deleteFilesCreatedByTest(File dir) {
+        if (dir.isDirectory())
+        { File[] children = dir.listFiles();
+        for (int i = 0; i < children.length; i++)
+        {  deleteFilesCreatedByTest(children[i]);
+        }
+        }
+        if(!dir.getPath().endsWith("resources"))
+        dir.delete();
+
+
+}
+
 
 
 }
