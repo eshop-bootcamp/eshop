@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -42,12 +39,15 @@ public class SellerController {
             , @RequestParam(name = "quantity", required = true) double quantity
             , @RequestParam(name = "price", required = true) double price
             ,@RequestParam("file") MultipartFile file) {
-        Path path = Paths.get("/Users/srividhya/Desktop/ItemImages");
+        Path path = Paths.get("./src/main/resources/ItemImages");
         String imageUrl = fileHandlerService.handleFileUpload(file,path);
         Item item = null;
-        if(!"error".equalsIgnoreCase(imageUrl) && ! "alreadyExists".equalsIgnoreCase(imageUrl)){
+        if(!"error".equalsIgnoreCase(imageUrl)){
         item = sellerService.addItem(new Item(itemName, new Category(categoryId), description, quantity, price,
                 imageUrl));
+        } else{
+            item = sellerService.addItem(new Item(itemName, new Category(categoryId), description, quantity, price,
+                    ""));
         }
         return item;
     }

@@ -13,7 +13,8 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest().fullyAuthenticated()
+                .anyRequest().permitAll()
+                .antMatchers("/login").permitAll()
                 .and()
                 .httpBasic()
                 .and()

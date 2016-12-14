@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by srividhya on 13/12/16.
  */
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/category")
 public class BuyerController {

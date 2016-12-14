@@ -31,8 +31,4 @@ public class Item {
     }
 
 
-    public Category getCategory() {
-        return category;
-    }
-
 }
