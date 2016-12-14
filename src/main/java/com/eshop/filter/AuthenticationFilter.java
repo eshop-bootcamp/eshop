@@ -9,9 +9,12 @@ import java.io.IOException;
 
 
 public class AuthenticationFilter implements Filter {
+
+    private final String TOKEN_HEADER = "X-Authorization";
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("init");
+
     }
 
     @Override
@@ -19,10 +22,11 @@ public class AuthenticationFilter implements Filter {
             ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        String token = httpRequest.getHeader("auth-header");
+
+        String tokenString = httpRequest.getHeader(TOKEN_HEADER);
         TokenServiceImpl tokenServiceImpl = new TokenServiceImpl();
-        System.out.println(token);
-        if (httpRequest.getRequestURI().endsWith("/login") || tokenServiceImpl.verifyToken(token)) {
+
+        if (httpRequest.getRequestURI().endsWith("/login") || tokenServiceImpl.verifyToken(tokenString)) {
             chain.doFilter(httpRequest, httpResponse);
         } else {
             httpResponse.sendError(401);
@@ -32,6 +36,5 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-        System.out.println("destroy");
     }
 }

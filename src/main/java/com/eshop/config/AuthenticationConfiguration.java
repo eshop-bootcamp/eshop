@@ -1,4 +1,4 @@
-package com.eshop.auth.config;
+package com.eshop.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,5 +17,7 @@ public class AuthenticationConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
+
+
 
 }
