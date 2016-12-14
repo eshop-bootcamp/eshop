@@ -2,12 +2,9 @@ package com.eshop.controllers;
 
 import com.eshop.model.Category;
 import com.eshop.services.CategoryService;
-import com.eshop.services.implementation.BuyerServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.View;
@@ -41,7 +38,6 @@ public class BuyerControllerTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        mockCategoryService = Mockito.mock(BuyerServiceImpl.class);
         mockBuyerController = new BuyerController(mockCategoryService);
         mockMvc = standaloneSetup(mockBuyerController)
                 .setSingleView(mockView)
@@ -56,7 +52,7 @@ public class BuyerControllerTest {
 
 
         List<Category> expectedCategories = asList(categoryA);
-        when(mockCategoryService.fetchAllCategories()).thenReturn(expectedCategories);
+        when(mockCategoryService.getAllCategories()).thenReturn(expectedCategories);
 
 
         mockMvc.perform(get("/category/getcategories"))

@@ -2,9 +2,7 @@ package com.eshop.controllers;
 
 import com.eshop.model.Category;
 import com.eshop.services.CategoryService;
-import com.eshop.services.implementation.BuyerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,12 +25,6 @@ public class BuyerController {
     }
 
 
-    @RequestMapping(value = "/getcategories", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Category> getAllCategories() {
 
-        return buyerService.fetchAllCategories();
-
-    }
 
 }
