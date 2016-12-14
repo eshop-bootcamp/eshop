@@ -6,7 +6,16 @@ buildscript {
         mysqlJavaConnectorVersion = '5.1.36'
     }
     repositories {
+//        ivy {
+//            name "GitHb"
+//            artifactPattern "http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]"
+//        }
+//        add(new org.apache.ivy.plugins.resolver.URLResolver()) {
+//            name = 'GitHub'
+//            addArtifactPattern 'http://cloud.github.com/downloads/[organisation]/[module]/[module]-[revision].[ext]'
+//        }
         mavenCentral()
+
 
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -14,6 +23,8 @@ buildscript {
 
     }
     dependencies {
+//        classpath("jamescarr:h2-gradle-plugin:0.8.2")
+        classpath("com.bmuschko:gradle-tomcat-plugin:2.2.2")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("gradle.plugin.com.palantir:jacoco-coverage:${jacocoCoverage}")
         classpath("org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}")
@@ -27,7 +38,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'com.palantir.jacoco-coverage'
 apply plugin: 'com.palantir.jacoco-full-report'
 apply plugin: 'org.liquibase.gradle'
-
+//apply plugin: 'h2'
 jar {
     baseName = 'eshop'
     version = '0.0.1-SNAPSHOT'
@@ -83,7 +94,6 @@ liquibase {
             password properties['password']
         }
         liquibaseintegration {
-            println "def"
             File propsFile = new File("${project.rootDir}/src/main/resources/liquibase/liquibase.integration.properties")
             Properties properties = new Properties()
             properties.load(new FileInputStream(propsFile))
@@ -93,10 +103,11 @@ liquibase {
             password properties['password']
         }
     }
-    if (project.hasProperty("dbContext") && project.property("dbContext") == 'integrationTest') {
-        println "abc"
+    if (project.hasProperty("dbContext") && project.properties.get("dbContext") == 'integrationTest') {
+        println "integrationhsdgksdhk"
         runList = 'liquibaseintegration'
     } else {
+        println "dkhjsglkjhDJKHkljqhbfdlqsk"
         runList = 'liquibasemain'
     }
 }
@@ -108,6 +119,26 @@ task migrateDatabase() {
 }
 migrateDatabase.dependsOn update
 
+task setIntegrationProperties(){
+    project.ext.set("dbContext", "integrationTest")
+}
+task integrationTest(type: Test, dependsOn: [ 'update']) {
+//    project.properties.put("dbContext","integrationTest")
+    println project.property("dbContext")
+//    doFirst{
+//        h2start.execute()
+//    }
+    include "com/eshop/integration/**"
+//    doLast{
+//        dropAll.execute()
+//    }
+}
+//h2stop.shouldRunAfter integrationTest
+//setIntegrationParams.mustRunBefore integrationTest
+//h2stop.dependsOn update
+//update.dependsOn h2start
 
-
-
+//h2 {
+//    tcpPort = 9092
+//    webPort = 8082
+//}
