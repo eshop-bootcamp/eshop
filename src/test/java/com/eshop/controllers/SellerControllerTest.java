@@ -46,13 +46,27 @@ public class SellerControllerTest {
     public void testAddItemToCatelog() throws Exception {
        MockMultipartFile multipartFile =
                 new MockMultipartFile("file", "test.png", "image/png", "Spring Framework".getBytes());
-        String url = "/Users/srividhya/Desktop/ItemImages/test.png";
+        String url = "./src/main/resources/ItemImages/test.png";
 
         when(fileHandlerServiceMock.handleFileUpload(anyObject(),anyObject())).thenReturn(url);
         Item item = new Item("Samsung", new Category(1L), "samsung phone", 1, 1000, url);
         when(sellerServiceMock.addItem(anyObject())).thenReturn(item);
         Item savedItem = sellerController.addItemToCatelog("Samsung", 1l, "samsung phone", 1, 1000,multipartFile);
         assertNotNull(savedItem);
+    }
+
+    @Test
+    public void testGracefulAddItemToCatologWhenImageUploadFails(){
+
+        MockMultipartFile multipartFile =
+                new MockMultipartFile("file", "test.png", "image/png", "Spring Framework".getBytes());
+
+        when(fileHandlerServiceMock.handleFileUpload(anyObject(),anyObject())).thenReturn("error");
+        Item item = new Item("Samsung", new Category(1L), "samsung phone", 1, 1000, "");
+        when(sellerServiceMock.addItem(anyObject())).thenReturn(item);
+        Item savedItem = sellerController.addItemToCatelog("Samsung", 1l, "samsung phone", 1, 1000,multipartFile);
+        assertNotNull(savedItem);
+
     }
 
 

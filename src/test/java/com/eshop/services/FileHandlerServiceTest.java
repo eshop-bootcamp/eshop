@@ -1,18 +1,16 @@
 package com.eshop.services;
 
 import com.eshop.services.implementation.FileHandlerServiceImpl;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -21,24 +19,42 @@ import static org.junit.Assert.assertTrue;
 public class FileHandlerServiceTest {
 
     FileHandlerService fileHandlerService = new FileHandlerServiceImpl();
+    @Test
+    public  void givenANonExistentDirectoryShouldCreateOne(){
+        MockMultipartFile multipartFile =
+                new MockMultipartFile("file", "test"+ Math.random()+".png", "text/plain", "Spring Framework".getBytes());
+        String nonExistentUrl = "./src/test/resources/ItemImages"+Math.random();
+        Path path = Paths.get(nonExistentUrl);
+        String url = fileHandlerService.handleFileUpload(multipartFile,path);
+        assertTrue(new File(nonExistentUrl).exists());
+        assertTrue(new File(url).exists());
+    }
 
-    @Test @Ignore
-    public void givenANonExistentFileAndPathShouldSaveAndReturnURL(){
+    @Test
+    public void givenANonExistentFileShouldSaveAndReturnURL(){
         MockMultipartFile multipartFile =
                new MockMultipartFile("file", "test"+ Math.random()+".png", "text/plain", "Spring Framework".getBytes());
-        Path path = Paths.get("/Users/srividhya/Desktop/ItemImages");
+        Path path = Paths.get("./src/test/resources/ItemImages");
        String url = fileHandlerService.handleFileUpload(multipartFile,path);
         assertEquals(path.toString() + "/" + multipartFile.getOriginalFilename(), url);
         assertTrue(new File(url).exists());
     }
 
-    @Test @Ignore
-    public void givenAlreadyExistingFileShouldReturnMessage(){
+    @Test
+    public void givenAlreadyExistingFileShouldCreateNewFile(){
         MockMultipartFile multipartFile =
                 new MockMultipartFile("file", "test2.png", "text/plain", "Spring Framework".getBytes());
-        Path path = Paths.get("/Users/srividhya/Desktop/ItemImages");
+        Path path = Paths.get("./src/test/resources/ItemImages");
+        try {
+            if (!Files.exists(path.resolve(multipartFile.getOriginalFilename()))) {
+                Files.copy(multipartFile.getInputStream(), path.resolve(multipartFile.getOriginalFilename()));
+            }
+        } catch (IOException exception){
+
+        }
         String url = fileHandlerService.handleFileUpload(multipartFile,path);
-        assertEquals("alreadyExists",url);
+        assertTrue(new File(url).exists());
     }
+
 
 }
