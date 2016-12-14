@@ -30,5 +30,9 @@ public class Item {
         this.imagePath = imagePath;
     }
 
+    public Long getId(){
+        return this.id;
+    }
+
 
 }
