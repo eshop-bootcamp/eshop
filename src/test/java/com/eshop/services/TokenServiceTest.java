@@ -17,7 +17,7 @@ public class TokenServiceTest {
 
         String data = "RandomData";
         String actual = tokenService.allocateToken(Arrays.asList(data));
-        String expected = "[RandomData]-UmFuZG9tRGF0YTpEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
+        String expected = "RandomData-UmFuZG9tRGF0YTtEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
 
         assertThat(actual, is(expected));
     }
@@ -25,7 +25,7 @@ public class TokenServiceTest {
     @Test
     public void verifyToken() throws Exception {
         TokenService tokenService = new TokenService();
-        String token = "RandomData-UmFuZG9tRGF0YTpEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
+        String token = "RandomData-UmFuZG9tRGF0YTtEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
 
         assertTrue(tokenService.verifyToken(token));
     }

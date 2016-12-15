@@ -15,9 +15,9 @@ public class TokenService {
     public String allocateToken(List<String> extendedInformation) {
 
         String data = String.join(":", extendedInformation);
-        data += ":"+ SECRET;
+        data += ";"+ SECRET;
         String encodedString = base64.encodeAsString(data.getBytes());
-        return new String(extendedInformation + "-" + encodedString);
+        return new String(String.join(":", extendedInformation) + "-" + encodedString);
     }
 
     public boolean verifyToken(String token) {
@@ -29,7 +29,7 @@ public class TokenService {
         String assertAgainst = tokenParams[0];
 
         String decoded = new String(base64.decode(tokenParams[1]));
-        String[] decodedPayLoads = decoded.split(":");
+        String[] decodedPayLoads = decoded.split(";");
 
         String secret = decodedPayLoads[1];
         String value = decodedPayLoads[0];
