@@ -44,7 +44,7 @@ public class AuthControllerTest {
 
     @Test
     public void shouldReturnSuccessPayloadGivenValidUser() throws Exception {
-        User validUser = new Buyer("username", "password");
+        Buyer validUser = new Buyer("username", "password");
         AuthorizedUser expectedAuthorizedUser = new AuthorizedUser("SomeToken", validUser);
         User userReturnedFromValidation = new Buyer("username", "password");
         when(userService.validateUser(validUser)).thenReturn(userReturnedFromValidation);
