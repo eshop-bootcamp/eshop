@@ -5,10 +5,7 @@ import com.eshop.model.Category;
 import com.eshop.model.Item;
 import com.eshop.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/{categoryId}/items", method = RequestMethod.GET)
-    public List<Item> getAllItemsByCategory(@RequestParam Long categoryId) {
+    public List<Item> getAllItemsByCategory(@PathVariable("categoryId") Long categoryId) {
         return categoryService.getItemsByCategoryId(categoryId);
     }
 
