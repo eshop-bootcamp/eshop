@@ -34,7 +34,7 @@ public class AuthController {
     public ResponseEntity login(@RequestBody User user) {
         try{
             User validatedUser = userService.validateUser(user);
-            String token = tokenService.allocateToken(Arrays.asList(user.getUsername(), user.getUserType()));
+            String token = tokenService.allocateToken(Arrays.asList(validatedUser.getUsername(), validatedUser.getUserType()));
             return ResponseEntity.ok(new AuthorizedUser(token, user));
         }
         catch (UsernameNotFoundException e){
