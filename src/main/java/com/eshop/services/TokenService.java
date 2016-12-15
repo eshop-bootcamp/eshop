@@ -1,6 +1,10 @@
-package com.eshop.services.implementation;
+package com.eshop.services;
 
-public class TokenServiceImpl {
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class TokenService {
 
     private final static String SECRET = "Do not even try to hack me";
     private org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
