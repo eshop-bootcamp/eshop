@@ -16,11 +16,12 @@ public class CategoryService {
     CategoryRepository categoryRepository;
 
     public List<Category> getAllCategories() {
-        return Lists.newArrayList(categoryRepository.findAll());
+        Iterable<Category> categories = categoryRepository.findAll();
+        return Lists.newArrayList(categories);
     }
 
-    public List<Item> getItemsByCategoryName(String categoryName) {
-        return null;
+    public List<Item> getItemsByCategoryId(Long categoryId) {
+        return categoryRepository.findOne(categoryId).getItems();
     }
 
 }
