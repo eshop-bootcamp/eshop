@@ -26,12 +26,18 @@ public class AuthenticationFilter implements Filter {
         String tokenString = httpRequest.getHeader(TOKEN_HEADER);
         TokenService tokenService = new TokenService();
 
-        if (httpRequest.getRequestURI().endsWith("/login") || tokenService.verifyToken(tokenString)) {
+        if (isValidRequest(httpRequest, tokenString, tokenService)) {
             chain.doFilter(httpRequest, httpResponse);
         } else {
             httpResponse.sendError(401);
         }
 
+    }
+
+    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString, TokenService tokenService) {
+        return httpRequest.getRequestURI().endsWith("/login")
+                || httpRequest.getRequestURI().endsWith("/user/register")
+                || tokenService.verifyToken(tokenString);
     }
 
     @Override
