@@ -9,6 +9,14 @@ public class AuthorizedUser {
         this.validUser = validUser;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public User getValidUser() {
+        return validUser;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
