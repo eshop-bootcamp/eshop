@@ -1,17 +1,14 @@
 package com.eshop.integration;
 
 import com.eshop.EShopApplication;
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Header;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.HttpStatus;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 
 public class AuthenticationTest {
@@ -19,37 +16,56 @@ public class AuthenticationTest {
     @BeforeClass
     public static void setUp() {
         SpringApplication.run(EShopApplication.class, "");
+        RestAssured.useRelaxedHTTPSValidation();
+        RestAssured.baseURI = "https://localhost:8443";
     }
 
-    @Test @Ignore
+    @Test
     public void shouldNotAllowAccessWithoutLogin() {
-        given().
-                port(8443).get("/category/getcategories")
-                .then().
-                statusCode(401);
+        given()
+                .get("/category/getcategories")
+                .then()
+                .statusCode(HttpStatus.UNAUTHORIZED.value());
     }
 
-    @Test @Ignore
-    public void shouldAuthenticateUserWithBasicAuthGivenProperCredentials() {
-        String response = given()
-                .port(8443)
-                .auth().preemptive()
-                .basic("username", "password")
-                .get("/user")
+    @Test
+    public void shouldGetOkResponseForGivenProperCredentials() {
+        given()
+                .body("{\"username\":\"john\", \"password\":\"pass123\" }")
+                .header(new Header("content-type", "application/json"))
+                .post("/login")
                 .then()
-                .extract()
-                .response().body().prettyPrint();
-        assertThat(response, is("Authenticated!"));
+                .statusCode(HttpStatus.OK.value());
     }
 
-    @Test @Ignore
-    public void shouldAuthenticateUserWithBasicAuthGivenIncorrectCredentials() {
-        given().port(8443)
-                .auth().preemptive()
-                .basic("", "")
-                .get("/")
+    @Test
+    public void shouldSendUnautherizedResponseGivenIncorrectCredentials() {
+        given()
+                .body("{\"username\":\"johnny\", \"password\":\"pass123\" }")
+                .header(new Header("content-type", "application/json"))
+                .post("/login")
                 .then()
-                .statusCode(401);
+                .statusCode(HttpStatus.UNAUTHORIZED.value());
+    }
+
+    @Test
+    public void shouldSendUnautherizedResponseWhenGivenNullCredential() {
+        given()
+                .body("")
+                .header(new Header("content-type", "application/json"))
+                .post("/login")
+                .then()
+                .statusCode(HttpStatus.BAD_REQUEST.value());
+    }
+
+    @Test
+    public void shouldSendUnautherizedResponseWithCorrectUserButIncorrectPassword() {
+        given()
+                .body("{\"username\":\"john\", \"password\":\"pass1231\" }")
+                .header(new Header("content-type", "application/json"))
+                .post("/login")
+                .then()
+                .statusCode(HttpStatus.UNAUTHORIZED.value());
     }
 
 }
