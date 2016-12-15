@@ -118,10 +118,8 @@ liquibase {
         }
     }
     if (project.hasProperty("dbContext") && project.properties.get("dbContext") == 'integrationTest') {
-        println "integrationhsdgksdhk"
         runList = 'liquibaseintegration'
     } else {
-        println "dkhjsglkjhDJKHkljqhbfdlqsk"
         runList = 'liquibasemain'
     }
 }
@@ -156,7 +154,7 @@ test{
 //h2stop.dependsOn update
 //update.dependsOn h2start
 
-//h2 {
+//h2
 //    tcpPort = 9092
 //    webPort = 8082
 //}
