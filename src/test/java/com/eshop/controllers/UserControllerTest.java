@@ -1,7 +1,7 @@
 package com.eshop.controllers;
 
 import com.eshop.model.Buyer;
-import com.eshop.model.User;
+import com.eshop.model.Gender;
 import com.eshop.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ public class UserControllerTest {
 
     @Test
     public void testBuyerWithMandatoryFields() {
-        User buyer = new Buyer("John", "Pass123");
+        Buyer buyer = new Buyer("John", "Pass123", Gender.MALE);
         when(service.register(buyer)).thenReturn(new ResponseEntity(HttpStatus.CREATED));
         ResponseEntity response = userController.register(buyer);
         assertNotNull(response);

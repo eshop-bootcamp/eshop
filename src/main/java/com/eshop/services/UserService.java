@@ -17,19 +17,6 @@ public class UserService {
     //UserRepositoryCustom userRepositoryCustom;
 
     public ResponseEntity register(User user) {
-
-//        boolean hasError = false;
-//        if(!userRepositoryCustom.isEmailUnique(user.getEmailId())) {
-//            hasError = true;
-//        }
-//
-//        if(!userRepositoryCustom.isUserNameUnique(user.getUsername())) {
-//            hasError = true;
-//        }
-
-//        if(hasError) {
-//            return new ResponseEntity(HttpStatus.CONFLICT);
-//        }
         userRepository.save(user);
         return new ResponseEntity(HttpStatus.CREATED);
     }

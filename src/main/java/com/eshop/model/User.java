@@ -11,6 +11,10 @@ public class User {
 
     private String username;
     private String password;
+    private String emailid;
+    private String name;
+    private String address;
+    private String mobile;
 
      public User(){}
 

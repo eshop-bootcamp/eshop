@@ -1,6 +1,7 @@
 package com.eshop.services;
 
 import com.eshop.model.Buyer;
+import com.eshop.model.Gender;
 import com.eshop.model.User;
 import com.eshop.repositories.UserRepository;
 import org.junit.Test;
@@ -31,7 +32,7 @@ public class UserServiceTest {
 
     @Test
     public void testBuyerIsCreatedWithValidParameters() {
-        User buyer = new Buyer("John", "Pass123");
+        User buyer = new Buyer("John", "Pass123", Gender.MALE);
         //when(userRepositoryCustom.isEmailUnique(buyer.getEmailId())).thenReturn(true);
         //when(userRepositoryCustom.isUserNameUnique(buyer.getUsername())).thenReturn(true);
         when(userRepository.save(buyer)).thenReturn(buyer);
@@ -42,7 +43,7 @@ public class UserServiceTest {
 
     @Test
     public void testBuyerIsNotCreatedWithInValidParameters() {
-        User buyer = new Buyer("John", "Pass123");
+        User buyer = new Buyer("John", "Pass123", Gender.MALE);
         //when(userRepositoryCustom.isEmailUnique(buyer.getEmailId())).thenReturn(false);
        // when(userRepositoryCustom.isUserNameUnique(buyer.getUsername())).thenReturn(false);
         ResponseEntity response = userService.register(buyer);
