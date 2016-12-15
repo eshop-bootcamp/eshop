@@ -141,6 +141,10 @@ task integrationTest(type: Test, dependsOn: [ 'update']) {
 //        dropAll.execute()
 //    }
 }
+
+test{
+    exclude "com/eshop/integration/**"
+}
 //h2stop.shouldRunAfter integrationTest
 //setIntegrationParams.mustRunBefore integrationTest
 //h2stop.dependsOn update
