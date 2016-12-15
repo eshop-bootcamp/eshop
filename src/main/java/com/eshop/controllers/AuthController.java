@@ -1,6 +1,7 @@
 package com.eshop.controllers;
 
 import com.eshop.model.AuthorizedUser;
+import com.eshop.model.Buyer;
 import com.eshop.model.User;
 import com.eshop.services.TokenService;
 import com.eshop.services.UserService;
@@ -31,9 +32,9 @@ public class AuthController {
     private TokenService tokenService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity login(@RequestBody User user) {
+    public ResponseEntity login(@RequestBody Buyer user) {
         try{
-            User validatedUser = userService.validateUser(user);
+            User validatedUser = userService.validateUser((User)user);
             String token = tokenService.allocateToken(Arrays.asList(validatedUser.getUsername(), validatedUser.getUserType()));
             return ResponseEntity.ok(new AuthorizedUser(token, user));
         }
