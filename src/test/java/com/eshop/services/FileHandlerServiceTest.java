@@ -2,6 +2,7 @@ package com.eshop.services;
 
 import com.eshop.services.implementation.FileHandlerServiceImpl;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockMultipartFile;
 
@@ -20,6 +21,14 @@ import static org.junit.Assert.assertTrue;
 public class FileHandlerServiceTest {
 
     FileHandlerService fileHandlerService = new FileHandlerServiceImpl();
+    @Before
+    public void createResourcesDirectoryIfNotPresent(){
+        File directory = new File("./src/test/resources");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+    }
+
     @Test
     public  void givenANonExistentDirectoryShouldCreateOne(){
         MockMultipartFile multipartFile =
@@ -71,7 +80,7 @@ public class FileHandlerServiceTest {
         {  deleteFilesCreatedByTest(children[i]);
         }
         }
-        if(!dir.getPath().endsWith("resources"))
+        //if(!dir.getPath().endsWith("resources") && !dir.getPath().endsWith("placeholder_1.txt") )
         dir.delete();
 
 
