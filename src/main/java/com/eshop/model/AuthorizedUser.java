@@ -19,6 +19,7 @@ public class AuthorizedUser {
         this.token = token;
         userDetails = new LinkedHashMap<>();
         userDetails.put("username", validUser.getUsername());
+        userDetails.put("role", validUser.getUserType());
     }
 
     @Override
