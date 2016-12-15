@@ -37,12 +37,12 @@ public class AuthenticationFilter implements Filter {
 
     }
 
-    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString) {
-//        return httpRequest.getRequestURI().endsWith("/login")
-//                || httpRequest.getRequestURI().endsWith("/user/register")
-//                || tokenService.verifyToken(tokenString);
 
-        return true;
+    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString) {
+        TokenService tokenService = new TokenService();
+        return httpRequest.getRequestURI().endsWith("/login")
+                || httpRequest.getRequestURI().endsWith("/user/register/buyer")
+                || tokenService.verifyToken(tokenString);
     }
 
     @Override

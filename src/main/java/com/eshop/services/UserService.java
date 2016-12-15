@@ -5,6 +5,7 @@ import com.eshop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +19,12 @@ public class UserService {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    public boolean validateUser(User userToValidate) {
+    public User validateUser(User userToValidate) {
         User user = userRepository.findByUsername(userToValidate.getUsername());
-        return user != null && user.getPassword().equals(userToValidate.getPassword());
+        if (user == null || !user.getPassword().equals(userToValidate.getPassword())) {
+            throw new UsernameNotFoundException("Username not found" + userToValidate.getUsername());
+        }
+        return user;
+
     }
 }

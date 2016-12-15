@@ -7,10 +7,19 @@ public class AuthorizedUser {
     private final String token;
     private final Map<String, String> userDetails;
 
+    @Override
+    public String toString() {
+        return "AuthorizedUser{" +
+                "token='" + token + '\'' +
+                ", userDetails=" + userDetails +
+                '}';
+    }
+
     public AuthorizedUser(String token, User validUser) {
         this.token = token;
         userDetails = new LinkedHashMap<>();
         userDetails.put("username", validUser.getUsername());
+        userDetails.put("role", validUser.getUserType());
     }
 
     @Override
