@@ -12,6 +12,11 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
 import static org.hamcrest.core.Is.is;
 
 
@@ -33,6 +38,9 @@ public class AuthControllerTest {
     @Mock
     private TokenService tokenService;
 
+    @Mock
+    private HttpServletResponse httpServletResponse;
+
     @Test
     public void shouldReturnSuccessPayloadGivenValidUser() throws Exception {
         User validUser = new User("username", "password");
@@ -41,7 +49,7 @@ public class AuthControllerTest {
         when(userService.validateUser(validUser)).thenReturn(true);
         when(tokenService.allocateToken(validUser.getUsername())).thenReturn("SomeToken");
 
-        ResponseEntity successResponse = authController.login(validUser);
+        ResponseEntity successResponse = authController.login(validUser,httpServletResponse);
 
         assertThat(successResponse.getBody(), is(expectedAuthorizedUser));
         assertThat(successResponse.getStatusCode(), is(HttpStatus.OK));
@@ -50,15 +58,15 @@ public class AuthControllerTest {
 
 
     @Test
-    public void shouldReturnErrorPayloadWhenAuthenticationFails() {
+    public void shouldReturnErrorPayloadWhenAuthenticationFails() throws IOException {
         User invalidUser = new User("Username", "IncorrectPassword");
 
         UserService userService = mock(UserService.class);
         when(userService.validateUser(invalidUser)).thenReturn(false);
 
-        ResponseEntity errorResponse = authController.login(invalidUser);
+        ResponseEntity errorResponse = authController.login(invalidUser,httpServletResponse);
 
-        assertThat(errorResponse.getBody(), is(AuthController.USERNAME_AND_REQUEST_DOES_NOT_MATCH));
+        assertThat(errorResponse.getBody().toString(), is("{message="+AuthController.USERNAME_AND_REQUEST_DOES_NOT_MATCH+"}"));
         assertThat(errorResponse.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
     }
 }

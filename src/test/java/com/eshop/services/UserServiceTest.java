@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
@@ -32,8 +33,6 @@ public class UserServiceTest {
     @Test
     public void testBuyerIsCreatedWithValidParameters() {
         User buyer = new Buyer("John", "Pass123");
-        //when(userRepositoryCustom.isEmailUnique(buyer.getEmailId())).thenReturn(true);
-        //when(userRepositoryCustom.isUserNameUnique(buyer.getUsername())).thenReturn(true);
         when(userRepository.save(buyer)).thenReturn(buyer);
         ResponseEntity response = userService.register(buyer);
         assertNotNull(response);
@@ -43,22 +42,22 @@ public class UserServiceTest {
     @Test
     public void testBuyerIsNotCreatedWithInValidParameters() {
         User buyer = new Buyer("John", "Pass123");
-        //when(userRepositoryCustom.isEmailUnique(buyer.getEmailId())).thenReturn(false);
-        // when(userRepositoryCustom.isUserNameUnique(buyer.getUsername())).thenReturn(false);
         ResponseEntity response = userService.register(buyer);
         assertNotNull(response);
         assertTrue(response.getStatusCode() == HttpStatus.CREATED);
     }
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
+    @Test
+    public void shouldReturnFalseWhenUserIsNotValid() {
+        User user = new User("John", "Pass123");
+        when(userRepository.findByUsername("John12")).thenReturn(null);
+        assertFalse(userService.validateUser(user));
+    }
 
     @Test
-    public void shouldThrowExceptionWhenUserIsNotValid() {
+    public void shouldReturnTrueWhenUserIsValid(){
         User user = new User("John", "Pass123");
-        when(userRepository.findByUsername("John12")).thenThrow(UsernameNotFoundException.class);
-
-        exception.expect(UsernameNotFoundException.class);
-        userService.validateUser(user);
+        when(userRepository.findByUsername("John")).thenReturn(user);
+        assertTrue(userService.validateUser(user));
     }
 }

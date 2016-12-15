@@ -45,4 +45,8 @@ public class User {
         result = 31 * result + password.hashCode();
         return result;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

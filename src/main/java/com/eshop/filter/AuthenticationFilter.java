@@ -24,9 +24,8 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         String tokenString = httpRequest.getHeader(TOKEN_HEADER);
-        TokenService tokenService = new TokenService();
 
-        if (isValidRequest(httpRequest, tokenString, tokenService)) {
+        if (isValidRequest(httpRequest, tokenString)) {
             chain.doFilter(httpRequest, httpResponse);
         } else {
             httpResponse.sendError(401);
@@ -34,7 +33,8 @@ public class AuthenticationFilter implements Filter {
 
     }
 
-    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString, TokenService tokenService) {
+    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString) {
+        TokenService tokenService = new TokenService();
         return httpRequest.getRequestURI().endsWith("/login")
                 || httpRequest.getRequestURI().endsWith("/user/register")
                 || tokenService.verifyToken(tokenString);
