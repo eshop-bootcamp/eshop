@@ -3,6 +3,8 @@ package com.eshop.services;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TokenService {
 
@@ -10,9 +12,10 @@ public class TokenService {
     private org.apache.commons.codec.binary.Base64 base64 = new org.apache.commons.codec.binary.Base64();
 
 
-    public String allocateToken(String extendedInformation) {
+    public String allocateToken(List<String> extendedInformation) {
 
-        String data = extendedInformation + ":" + SECRET;
+        String data = String.join(":", extendedInformation);
+        data += ":"+ SECRET;
         String encodedString = base64.encodeAsString(data.getBytes());
         return new String(extendedInformation + "-" + encodedString);
     }

@@ -2,6 +2,8 @@ package com.eshop.services;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -14,8 +16,8 @@ public class TokenServiceTest {
         TokenService tokenService = new TokenService();
 
         String data = "RandomData";
-        String actual = tokenService.allocateToken(data);
-        String expected = "RandomData-UmFuZG9tRGF0YTpEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
+        String actual = tokenService.allocateToken(Arrays.asList(data));
+        String expected = "[RandomData]-UmFuZG9tRGF0YTpEbyBub3QgZXZlbiB0cnkgdG8gaGFjayBtZQ==";
 
         assertThat(actual, is(expected));
     }

@@ -1,10 +1,9 @@
 package com.eshop.integration;
 
-/**
- * Created by srividhya on 14/12/16.
- */
 import com.eshop.model.Category;
+import com.eshop.model.Item;
 import com.eshop.repositories.CategoryRepository;
+import com.eshop.repositories.ItemRepository;
 import com.google.common.collect.Iterables;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,12 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.util.Arrays;
+import java.util.List;
 
-/**
- * Created by sappana on 12/12/2016.
- */
+import static org.junit.Assert.*;
+
 @RunWith(SpringRunner.class)
 @ActiveProfiles(profiles="test")
 @SpringBootTest
@@ -27,6 +25,9 @@ public class CategoryRepositoryTest {
     @Autowired
     CategoryRepository categoryRepository;
 
+    @Autowired
+    ItemRepository itemRepository;
+
     @Test
     public void testGetCategories() {
         Iterable<Category> categories = categoryRepository.findAll();
@@ -34,4 +35,18 @@ public class CategoryRepositoryTest {
         assertNotNull(categories);
         assertTrue(Iterables.size(categories)>0);
     }
+
+    @Test
+    public void shouldGetItemsByCategoryId() {
+        itemRepository.deleteAll();
+        List<Item> items = Arrays.asList(itemRepository.save(new Item("Samsung mobile", new Category(1L), "phone", 1, 1000, "")),
+        itemRepository.save(new Item("Nokia mobile", new Category(1L), "sturdy phone", 1, 1002, "")));
+
+        Category category = categoryRepository.findOne(1l);
+        List<Item> actualItems = category.getItems();
+        assertFalse(actualItems.isEmpty());
+        //assertEquals(2, actualItems.size());
+        //assertEquals(items, actualItems);
+    }
+
 }

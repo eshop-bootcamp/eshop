@@ -19,11 +19,12 @@ public class UserService {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    public boolean validateUser(User userToValidate) {
+    public User validateUser(User userToValidate) {
         User user = userRepository.findByUsername(userToValidate.getUsername());
-        if (user == null) {
+        if (user == null || !user.getPassword().equals(userToValidate.getPassword())) {
             throw new UsernameNotFoundException("Username not found" + userToValidate.getUsername());
         }
-        return user.equals(userToValidate);
+        return user;
+
     }
 }

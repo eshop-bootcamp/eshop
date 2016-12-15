@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,13 +28,14 @@ public class CategoryControllerTest {
     private CategoryService categoryService;
 
     @Test
-    public void getAllItemsInACategoryGivenCategoryName(){
+    public void shouldGetAllItemsInACategoryGivenCategoryId(){
         List<Item> mockItems = Arrays.asList(
                 new Item("LG Nexus 5X", new Category(), "sdf", 12, 20, "nexus.png"),
                 new Item("MacBookPro", new Category(), "sdf", 12, 20, "macbook.png")
         );
-        when(categoryService.getItemsByCategoryName("electronics")).thenReturn(mockItems);
-        List<Item> items = categoryController.getAllItemsByCategory("electronics");
-        assertEquals(items.size(), 2);
+        when(categoryService.getItemsByCategoryId(1l)).thenReturn(mockItems);
+        List<Item> items = categoryController.getAllItemsByCategory(1l);
+        verify(categoryService).getItemsByCategoryId(1l);
+        assertEquals(mockItems, items);
     }
 }

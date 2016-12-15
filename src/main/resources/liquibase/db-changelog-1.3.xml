@@ -7,9 +7,6 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="alter_user" author="JintoAndSravanthi">
         <addColumn schemaName="eshop"
                    tableName="user">
-            <column name="password" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
             <column name="emailid" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>

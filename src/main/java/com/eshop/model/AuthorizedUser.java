@@ -1,20 +1,24 @@
 package com.eshop.model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class AuthorizedUser {
     private final String token;
-    private final User validUser;
+    private final Map<String, String> userDetails;
+
+    @Override
+    public String toString() {
+        return "AuthorizedUser{" +
+                "token='" + token + '\'' +
+                ", userDetails=" + userDetails +
+                '}';
+    }
 
     public AuthorizedUser(String token, User validUser) {
         this.token = token;
-        this.validUser = validUser;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public User getValidUser() {
-        return validUser;
+        userDetails = new LinkedHashMap<>();
+        userDetails.put("username", validUser.getUsername());
     }
 
     @Override
@@ -24,14 +28,23 @@ public class AuthorizedUser {
 
         AuthorizedUser that = (AuthorizedUser) o;
 
-        if (!token.equals(that.token)) return false;
-        return validUser.equals(that.validUser);
+        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        return userDetails != null ? userDetails.equals(that.userDetails) : that.userDetails == null;
+
     }
 
     @Override
     public int hashCode() {
-        int result = token.hashCode();
-        result = 31 * result + validUser.hashCode();
+        int result = token != null ? token.hashCode() : 0;
+        result = 31 * result + (userDetails != null ? userDetails.hashCode() : 0);
         return result;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public Map<String, String> getUserDetails() {
+        return userDetails;
     }
 }
