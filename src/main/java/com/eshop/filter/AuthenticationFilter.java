@@ -1,6 +1,7 @@
 package com.eshop.filter;
 
 import com.eshop.services.TokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,9 @@ import java.io.IOException;
 public class AuthenticationFilter implements Filter {
 
     private final String TOKEN_HEADER = "X-Authorization";
+
+    @Autowired
+    private TokenService tokenService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -33,7 +37,7 @@ public class AuthenticationFilter implements Filter {
 
     }
 
-    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString, TokenService tokenService) {
+    private boolean isValidRequest(HttpServletRequest httpRequest, String tokenString) {
 //        return httpRequest.getRequestURI().endsWith("/login")
 //                || httpRequest.getRequestURI().endsWith("/user/register")
 //                || tokenService.verifyToken(tokenString);
